@@ -13,6 +13,8 @@
 #define DEBUG_CCODEGEN FALSE
 #endif
 
+#include <pthread.h>
+
 #include "export.h"
 
 /* A key whose value will be a unique integer per thread */

@@ -71,7 +71,7 @@ structure MLton: MLTON =
       val safe = true
       val share = fn _ => raise Fail "share"
       val shareAll = fn _ => raise Fail "shareAll"
-      val size = MLton.size
+      fun size x = LargeInt.toInt (MLton.size x)
 
       structure Array =
          struct
