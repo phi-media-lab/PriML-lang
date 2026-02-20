@@ -1835,13 +1835,15 @@ struct
                                handle C.Context s => raise (Elaborate s)
                                     | C.Absent (_, id) =>
                                       raise (Elaborate
-                                                 (id ^ " in fairness criterion but not declared")))
+                                                 (id ^ " in ordering constraint but not declared")))
         | E.Fairness (s, n) =>
           let val _ = (C.prio ctx s)
                       handle C.Context s => raise (Elaborate s)
                            | C.Absent (_, id) =>
                              raise (Elaborate
                                         (id ^ " in fairness criterion but not declared"))
+              val _ = if n > 0w0 then ()
+                      else error loc "fairness weight must be a positive integer"
           in
               ([], [(s, n)], ctx)
           end
